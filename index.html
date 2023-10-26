@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarm clock</title>
+    <link rel="stylesheet" href="./index.css">
+    
+</head>
+<body>
+    <div class="clock"> <h1>Alarm Clock</h1>
+        <div class="main">
+    <div id="time"></div>
+    <input id="alarm" type="time" name="" id="">
+</div>
+     <div class="value">
+        <div>Alarm:</div>
+    <div id="alarmValue"></div>
+</div>
+    <div class="buttons">
+    <button onclick="ring()"> Set Alarm</button>
+    <button onclick="remove()">Remove Alarm</button>
+    <button onclick="stop()">Stop Alarm </button>
+</div>
+</div>
+    <audio id="gana" src="./One Love Shubh 320 Kbps.mp3"></audio>
+</body>
+<script>
+ 
+    
+    setInterval( getTime , 1000)
+    var alarm = document.getElementById("alarm")
+    var alarmValue = document.getElementById("alarmValue")
+    var audio = document.getElementById("gana")
+    function ring(){
+       
+        alarmValue.innerHTML = `${alarm.value}`
+       
+        
+       
+    }
+    ring()
+
+
+    function getTime(){
+        let now = new Date();
+        let h = now.getHours().toString().padStart(2 , '0');
+        let m = now.getMinutes().toString().padStart(2 , '0');
+        let s = now.getSeconds().toString().padStart(2 , '0');
+        let zone = ""
+
+        
+          
+        let showTime = `${h}:${m}`
+        var time = document.getElementById("time");
+        time.innerHTML = showTime
+        if(time.innerHTML===alarmValue.innerHTML){
+            audio.play()
+            
+        }
+        else{
+            audio.pause()
+        }
+    }getTime()
+    function stop(){
+        audio.pause()
+        alarmValue.innerHTML = "00:00"
+    }
+    function remove(){
+        location.reload()
+    }
+
+     
+
+
+</script>
+</html>
